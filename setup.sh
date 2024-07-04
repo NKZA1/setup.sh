@@ -18,7 +18,7 @@ pip install operator
 
 # Tải script nkzz từ GitHub và cài đặt
 printf '\n\033[1;32mCài Đặt Script NKZZ\033[0m\n\n'
-curl -s https://raw.githubusercontent.com/NKZA1/NKZTOL/main/NKZ.py -o $home/usr/bin/nkzz
+curl -s https://raw.githubusercontent.com/NKZA1/NKZ/main/NKZ.py -o $home/usr/bin/nkzz
 chmod 777 $home/usr/bin/nkzz
 
 printf '\n\033[1;32mGõ \033[1;33mnkzz \033[1;32mĐể Vào Tool\n\n'
