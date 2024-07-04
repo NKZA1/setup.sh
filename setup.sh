@@ -5,11 +5,11 @@ printf '\n\033[1;32m Tiến Hành Cài Dữ Liệu\033[0m\n\n'
 # Hiển thị thông báo tiến hành cài dữ liệu
 
 termux-setup-storage
-# Cấp quyền truy cập bộ nhớ cho Termux
 apt update
-
-# Cập nhật danh sách gói có sẵn
 apt upgrade
+pkg update
+pkg upgrade
+pkg install python
 
 # Nâng cấp các gói đã cài đặt lên phiên bản mới nhất
 
