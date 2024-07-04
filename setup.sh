@@ -21,24 +21,6 @@ pkg install -y python curl
 
 pip install requests
 # Cài đặt thư viện requests cho Python
-
-# Kiểm tra xem curl có sẵn không
-if ! command -v curl &> /dev/null
-then
-    echo "curl không được cài đặt. Tiến hành cài đặt curl."
-    pkg install -y curl
-fi
-
-# Tải về script NKZ.py từ GitHub và lưu vào thư mục /usr/bin/ với tên là nkzz
-curl -s https://raw.githubusercontent.com/NKZA1/NKZTOL/main/NKZ.py -o $home/usr/bin/nkzz
-
-# Kiểm tra xem tệp NKZ.py đã được tải xuống thành công chưa
-if [ -f $home/usr/bin/nkzz ]; then
-    echo "Tải xuống và cài đặt thành công tệp NKZ.py."
-else
-    echo "Lỗi khi tải xuống tệp NKZ.py."
-fi
-
 chmod 777 $home/usr/bin/nkzz
 # Cấp quyền thực thi cho script nkzz
 
