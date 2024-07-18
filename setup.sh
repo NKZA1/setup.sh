@@ -6,23 +6,16 @@ home='/data/data/com.termux/files/'
 printf '\n\033[1;32m Tiến Hành Cài Dữ Liệu\033[0m\n\n'
 
 # Update and upgrade packages
-pkg update
-pkg upgrade -y
+apt update
+apt upgrade
 
 # Install necessary packages
-pkg install clang python python-dev openssl-dev libffi-dev build-essential -y
-pkg install libcrypt-dev libffi-dev openssl-dev -y
-pkg install rustc cargo
+pkg install python
 
-
-# Install Python if not installed
-pkg install python -y
 
 # Cài đặt các thư viện Python cần thiết
 printf '\n\033[1;32m Tiến Hành Cài Python Packages\033[0m\n\n'
-pip install --force-reinstall cryptography
 pip install requests
-pip install cryptography
 
 # Cấp quyền truy cập cho Termux vào bộ nhớ
 termux-setup-storage
