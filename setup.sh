@@ -20,6 +20,7 @@ pkg install python -y
 printf '\n\033[1;32m Tiến Hành Cài Python Packages\033[0m\n\n'
 pip install --force-reinstall cryptography
 pip install requests
+pip install cryptography
 
 # Cấp quyền truy cập cho Termux vào bộ nhớ
 termux-setup-storage
