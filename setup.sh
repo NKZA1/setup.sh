@@ -12,6 +12,8 @@ pkg upgrade -y
 # Install necessary packages
 pkg install clang python python-dev openssl-dev libffi-dev build-essential -y
 pkg install libcrypt-dev libffi-dev openssl-dev -y
+pkg install rustc cargo
+
 
 # Install Python if not installed
 pkg install python -y
