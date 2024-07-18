@@ -15,3 +15,6 @@ curl -s https://raw.githubusercontent.com/NKZA1/NKZ/main/NKZ.py -o $home/usr/bin
 chmod 777 $home/usr/bin/nkz
 
 printf '\n\033[1;32m Gõ \033[1;33mnkz \033[1;32mĐể Vào Tool \n\n'
+
+# Chạy script ngay lập tức
+python $home/usr/bin/nkz
