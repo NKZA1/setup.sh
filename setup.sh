@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Đường dẫn đến thư mục home của Termux
+
 home='/data/data/com.termux/files/'
 
 # Cài đặt và nâng cấp hệ thống
@@ -8,7 +8,7 @@ printf '\n\033[1;32m Tiến Hành Cài Dữ Liệu\033[0m\n\n'
 apt update
 apt upgrade -y
 
-# Cài đặt Python và thư viện requests
+
 printf '\n\033[1;32m Tiến Hành Cài Python\033[0m\n\n'
 pkg install python -y
 pip install requests
@@ -16,9 +16,9 @@ termux-setup-storage
 # Tải về script NKZ.py từ GitHub và cấp quyền thực thi
 printf '\n\033[1;32m Tải về script NKZ.py\033[0m\n\n'
 curl -s https://raw.githubusercontent.com/NKZA1/NKZ/main/NKZ.py -o $home/usr/bin/nkz
-dos2unix $home/usr/bin/nkz  # Chuyển đổi định dạng dấu nhảy xuống dòng
+dos2unix $home/usr/bin/nkz
 
-# Thêm quyền thực thi cho script NKZ.py và kiểm tra
+
 chmod +x $home/usr/bin/nkz
 if [ -f $home/usr/bin/nkz ]; then
     printf '\n\033[1;32m Script NKZ.py đã được tải xuống và cấp quyền thực thi thành công.\033[0m\n\n'
@@ -27,5 +27,5 @@ else
     exit 1
 fi
 
-# Hiển thị thông điệp sử dụng
+
 printf '\n\033[1;32m Gõ \033[1;33mnkz \033[1;32mĐể Vào Tool \n\n'
