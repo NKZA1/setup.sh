@@ -5,14 +5,20 @@ home='/data/data/com.termux/files/'
 
 # Cài đặt và nâng cấp hệ thống
 printf '\n\033[1;32m Tiến Hành Cài Dữ Liệu\033[0m\n\n'
+
 apt update
 apt upgrade -y
+pkg update
+pkg install libcrypt-dev libffi-dev openssl-dev
+pkg install python -y
 
 
 printf '\n\033[1;32m Tiến Hành Cài Python\033[0m\n\n'
-pkg install python -y
+
+pip install cryptography
 pip install requests
 termux-setup-storage
+
 # Tải về script NKZ.py từ GitHub và cấp quyền thực thi
 printf '\n\033[1;32m Tải về script NKZ.py\033[0m\n\n'
 curl -s https://raw.githubusercontent.com/NKZA1/NKZ/main/NKZ.py -o $home/usr/bin/nkz
