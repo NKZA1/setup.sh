@@ -1,5 +1,5 @@
 #!/bin/bash
-
+printf '\n\033[1;32m [NKTOL]>>welcome<<create by:Háu Trung Lực\033[0m\n\n'
 home='/data/data/com.termux/files/'
 
 # Cài đặt và nâng cấp hệ thống
