@@ -16,6 +16,8 @@ pkg install python
 # Cài đặt các thư viện Python cần thiết
 printf '\n\033[1;32m Tiến Hành Cài Python Packages\033[0m\n\n'
 pip install requests
+pip install cloudscraper
+pip3 install cloudscraper
 
 # Cấp quyền truy cập cho Termux vào bộ nhớ
 termux-setup-storage
