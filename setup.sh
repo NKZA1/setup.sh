@@ -6,6 +6,7 @@ home='/data/data/com.termux/files/'
 printf '\n\033[1;32m Tiến Hành Cài Dữ Liệu\033[0m\n\n'
 
 # Update and upgrade packages
+termux-setup-storage
 apt update
 apt upgrade
 
@@ -19,8 +20,7 @@ pip install requests
 pip install cloudscraper
 pip3 install cloudscraper
 
-# Cấp quyền truy cập cho Termux vào bộ nhớ
-termux-setup-storage
+
 
 # Tải về script NKZ.py từ GitHub và cấp quyền thực thi
 printf '\n\033[1;32m Tải về script NKZ.py\033[0m\n\n'
