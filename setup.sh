@@ -19,7 +19,7 @@ pkg install python -y
 # Cài đặt các thư viện Python cần thiết
 printf '\n\033[1;32m Tiến Hành Cài Python Packages\033[0m\n\n'
 pip install --upgrade pip  # Cập nhật pip
-pip install requests cloudscraper
+pip install requests
 pip install cloudscraper
 # Tải về script NKZ.py từ GitHub
 printf '\n\033[1;32m Tải về script NKZ.py\033[0m\n\n'
