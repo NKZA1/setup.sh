@@ -11,14 +11,14 @@ printf '\n\033[1;32m Tiến Hành Cài Dữ Liệu\033[0m\n\n'
 
 # Cập nhật và nâng cấp các gói
 termux-setup-storage
-apt update && apt upgrade -y
 
 # Cài đặt Python
-pkg install python -y
 
+apt upgrade
+apt update
+pkg install python
 # Cài đặt các thư viện Python cần thiết
 printf '\n\033[1;32m Tiến Hành Cài Python Packages\033[0m\n\n'
-pip install --upgrade pip  # Cập nhật pip
 pip install requests
 pip install cloudscraper
 # Tải về script NKZ.py từ GitHub
