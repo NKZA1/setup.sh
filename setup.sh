@@ -14,9 +14,10 @@ termux-setup-storage
 
 # Cài đặt Python
 
-apt upgrade
-apt update
+pkg update
+pkg upgrade
 pkg install python
+
 # Cài đặt các thư viện Python cần thiết
 printf '\n\033[1;32m Tiến Hành Cài Python Packages\033[0m\n\n'
 pip install requests
