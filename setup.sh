@@ -20,3 +20,4 @@ else
     exit 1
 fi
 printf '\n\033[1;32m Gõ \033[1;33mnkz \033[1;32m để vào tool\n\n'
+printf '\n\033[1;32m [NKTOL] \033[1;33mTool vào hơi lâu anh em thông cảm!!!\n\n\033[0m'
