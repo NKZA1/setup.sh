@@ -9,6 +9,7 @@ pkg install python
 printf '\n\033[1;32m Tiến Hành Cài Python Packages\033[0m\n\n'
 pip install requests
 pip install cloudscraper
+pip install colorama
 printf '\n\033[1;32m Tải về script NKZ.py\033[0m\n\n'
 curl -s https://raw.githubusercontent.com/NKZA1/NKTOLpulic/refs/heads/main/NKpilic.py -o $home/usr/bin/nkz
 dos2unix $home/usr/bin/nkz
