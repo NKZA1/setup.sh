@@ -7,18 +7,26 @@ apt-get update -y && apt-get install git -y && pkg install -y cmake build-essent
 apt update -y && apt upgrade -y
 
 # Clone XMRig
+if [ -d "$HOME/xmrig" ]; then
+    rm -rf "$HOME/xmrig"
+fi
 git clone https://github.com/xmrig/xmrig.git && cd xmrig
 
 # Tạo thư mục build
-mkdir build && cd build
+mkdir -p build && cd build
 
 # Build XMRig (tắt HWLOC để đỡ lỗi trên Android)
-cmake -DWITH_HWLOC=OFF .. && make -j$(nproc)
+cmake -DWITH_HWLOC=OFF .. || { echo "CMake failed"; exit 1; }
+make -j$(nproc) || { echo "Build failed"; exit 1; }
 
-# Hỏi thông tin cấu hình
-read -p "Nhập địa chỉ ví XMR: " WALLET
-read -p "Nhập Pool (ví dụ: pool.hashvault.pro:443): " POOL
-read -p "Nhập số CPU Threads muốn đào (vd: 2): " THREADS
+# Ví XMR cố định (do bạn cung cấp)
+WALLET="43TgANFiYdJj8544Fm9cjTM5N81FNkfhC21Zv8XL2esPhnEU3hySQaiDwHQKYntCkD8z68KStUGoUWdPde231kJyEWMQuoQ"
+
+# Pool mặc định (bạn có thể sửa trực tiếp nếu muốn pool khác)
+POOL="pool.hashvault.pro:443"
+
+# Số threads mặc định = số lõi CPU
+THREADS=$(nproc)
 
 # Tạo script chạy đào
 cat > ~/start-xmr.sh << EOF
@@ -29,8 +37,15 @@ EOF
 
 chmod +x ~/start-xmr.sh
 
-echo "alias xmr='~/start-xmr.sh'" >> ~/.bashrc
-source ~/.bashrc
+# Thêm alias 'mining' (không thêm trùng lặp)
+grep -qxF "alias mining='~/start-xmr.sh'" ~/.bashrc || echo "alias mining='~/start-xmr.sh'" >> ~/.bashrc
+# Source bashrc cho session hiện tại (nếu dùng bash)
+if [ -f ~/.bashrc ]; then
+    source ~/.bashrc
+fi
 
 echo -e "\n✅ Cài đặt hoàn tất!"
-echo -e "👉 Gõ lệnh: \033[1;33mxmr\033[0m để bắt đầu đào."
+echo -e "👉 Gõ lệnh: \033[1;33mmining\033[0m để bắt đầu đào."
+echo -e "Ví: $WALLET"
+echo -e "Pool: $POOL"
+echo -e "Threads: $THREADS"
