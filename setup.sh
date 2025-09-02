@@ -2,7 +2,7 @@
 
 # ===== CONFIG =====
 WALLET="43TgANFiYdJj8544Fm9cjTM5N81FNkfhC21Zv8XL2esPhnEU3hySQaiDwHQKYntCkD8z68KStUGoUWdPde231kJyEWMQuoQ"
-POOL="pool.hashvault.pro:443"
+POOL="pool.hashvault.pro:3333"
 THREADS=$(( $(nproc) - 1 ))  # Leaves one CPU core free
 
 # ===== VERIFICATION PROMPT =====
