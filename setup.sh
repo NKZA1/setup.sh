@@ -16,36 +16,22 @@ git clone https://github.com/xmrig/xmrig.git && cd xmrig
 mkdir -p build && cd build
 
 # Build XMRig (tắt HWLOC để đỡ lỗi trên Android)
-cmake -DWITH_HWLOC=OFF .. || { echo "CMake failed"; exit 1; }
-make -j$(nproc) || { echo "Build failed"; exit 1; }
+cmake -DWITH_HWLOC=OFF .. && make -j$(nproc)
 
-# Ví XMR cố định (do bạn cung cấp)
-WALLET="43TgANFiYdJj8544Fm9cjTM5N81FNkfhC21Zv8XL2esPhnEU3hySQaiDwHQKYntCkD8z68KStUGoUWdPde231kJyEWMQuoQ"
-
-# Pool mặc định (bạn có thể sửa trực tiếp nếu muốn pool khác)
-POOL="pool.hashvault.pro:443"
-
-# Số threads mặc định = số lõi CPU
-THREADS=$(nproc)
-
-# Tạo script chạy đào
-cat > ~/start-xmr.sh << EOF
+# Tạo script mining
+cat > ~/mining << 'EOF'
 #!/bin/bash
 cd ~/xmrig/build
-./xmrig -o $POOL -u $WALLET -p x --tls -t $THREADS
+THREADS=$(( $(nproc) - 1 ))
+./xmrig -o asia.hashvault.pro:443 -u 88WgQnTXJNT4iG1x48X6LqcE61B4Ci1ikSaeMYhCYySbVbGsRHHihj7NkLzFdqJcXfnqa4n2fuelu45K2uXPJh -p rx --tls -t $THREADS
 EOF
 
-chmod +x ~/start-xmr.sh
+# Cấp quyền chạy
+chmod +x ~/mining
 
-# Thêm alias 'mining' (không thêm trùng lặp)
-grep -qxF "alias mining='~/start-xmr.sh'" ~/.bashrc || echo "alias mining='~/start-xmr.sh'" >> ~/.bashrc
-# Source bashrc cho session hiện tại (nếu dùng bash)
-if [ -f ~/.bashrc ]; then
-    source ~/.bashrc
-fi
+# Thêm alias để chỉ cần gõ "mining"
+grep -qxF "alias mining='~/mining'" ~/.bashrc || echo "alias mining='~/mining'" >> ~/.bashrc
+source ~/.bashrc
 
 echo -e "\n✅ Cài đặt hoàn tất!"
-echo -e "👉 Gõ lệnh: \033[1;33mmining\033[0m để bắt đầu đào."
-echo -e "Ví: $WALLET"
-echo -e "Pool: $POOL"
-echo -e "Threads: $THREADS"
+echo -e "👉 Gõ lệnh: \033[1;33mmining\033[0m để bắt đầu đào XMR."
