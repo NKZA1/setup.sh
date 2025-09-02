@@ -15,12 +15,7 @@ echo "2. Compile XMRig from source"
 echo "3. Set up mining to wallet: ${WALLET:0:12}..."
 echo "4. Use ${THREADS} CPU threads"
 echo ""
-read -p "Do you want to continue? (y/N): " confirm
 
-if [[ ! $confirm =~ ^[Yy]$ ]]; then
-    echo "Installation cancelled."
-    exit 0
-fi
 
 # ===== INSTALL DEPENDENCIES =====
 echo "[*] Updating and installing packages..."
