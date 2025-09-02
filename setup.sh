@@ -29,7 +29,7 @@ echo "[*] Tạo file mining..."
 cat > ~/mining << EOF
 #!/bin/bash
 cd ~/xmrig/build
-./xmrig -o $POOL -u $WALLET -p rx --tls -t $THREADS
+./xmrig -o $POOL -u $WALLET -p rx --tls --tlsverify=0
 EOF
 
 chmod +x ~/mining
