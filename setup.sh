@@ -2,16 +2,17 @@
 printf '\n\033[1;32m [NKTOL] | >>welcome<< | create by: Háu Trung Lực\033[0m\n\n'
 home='/data/data/com.termux/files/'
 
-printf '\n\033[1;32m Tiến Hành Cài Dữ Liệu Cần Thiết\033[0m\n\n'
+printf '\n\033[1;32m [NKTOL] | Đang tiến hành cài dữ liệu cần thiết...\033[0m\n\n'
+
+# Cấp quyền lưu trữ
 termux-setup-storage
-pkg update -y
-pkg upgrade -y
-pkg install git -y
-pkg install build-essential -y
-pkg install cmake -y
-pkg install clang -y
-pkg install wget -y
-pkg install proot -y
+
+# Cập nhật và nâng cấp gói
+apt update -y && apt upgrade -y
+
+# Cài các gói cần thiết
+pkg install -y git build-essential cmake clang wget proot
+
 
 printf '\n\033[1;32m Tải về và build XMRig\033[0m\n\n'
 cd ~
